@@ -31,7 +31,7 @@ jobs:
           gradle-home-cache-includes: |
             caches
             notifications
-      - run: ./gradlew -Dorg.gradle.jvmargs=-Xmx4g --continue --no-parallel test
+      - run: ./gradlew -Dorg.gradle.jvmargs=-Xmx4g --continue --no-parallel :aO:pscanrules:test
         env:
           ZAP_REMOTE_TESTS: 1
       - name: Publish JUnit report
@@ -47,7 +47,7 @@ jobs:
     if: failure()
     steps:
       - name: Open issue for failed CI Remote run
-        uses: actions/github-script@ed597411d8f3249106f519b421d6e2fb0817015d # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
